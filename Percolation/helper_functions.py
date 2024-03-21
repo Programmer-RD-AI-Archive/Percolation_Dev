@@ -3,9 +3,32 @@ from Percolation import *
 
 class Random:
     def generate_random_number(self, start: int, end: int) -> int:
+        """
+        Generate a random integer number between start and end (inclusive).
+
+        Args:
+            start (int): The minimum value of the random integer.
+            end (int): The maximum value of the random integer (inclusive).
+
+        Returns:
+            int: A random integer number between start and end.
+        """
         return random.randint(start, end)
 
     def select_choice(self, choices: list, probability: tuple[float]) -> list:
+        """
+        Select a random choice from a list based on a given probability distribution.
+
+        Args:
+            choices (list): A list of possible choices.
+            probability (tuple[float]): A tuple of probabilities corresponding to each choice in `choices`. The sum of all probabilities must be equal to 1.
+
+        Returns:
+            list: A single randomly selected choice from `choices` based on the given probability distribution.
+
+        Raises:
+            ValueError: If the length of `choices` and `probability` do not match.
+        """
         if len(choices) == len(probability):
             return random.choices(choices, weights=probability)
         raise ValueError(
@@ -14,7 +37,15 @@ class Random:
 
 
 class Ok_or_not:
+    """
+    This class takes a 2D list as input and determines whether each column of the list contains all unique elements.
+    """
+
     def __init__(self, grid: list) -> None:
+        """
+        Args:
+            grid (list): A 2D list of integers. Each row represents a column of the original list.
+        """
         self.grid = grid
         self.t = PrettyTable()
         self.col_length = len(self.grid[0])
@@ -25,6 +56,13 @@ class Ok_or_not:
         ]
 
     def generate(self) -> str:
+        """
+        This function generates a table showing whether each column of the input list contains all unique elements.
+        The output is a string containing the table in HTML format.
+
+        Returns:
+            str: The table showing whether each column of the input list contains all unique elements.
+        """
         for row in self.grid:
             for ele in row:
                 self.cols_data[row.index(ele)].append(ele)
@@ -33,13 +71,38 @@ class Ok_or_not:
         return list_ok_or_not
 
     def get_html(self) -> str:
+        """
+        This function returns the table showing whether each column of the input list contains all unique elements
+        in HTML format.
+
+        Returns:
+            str: The table showing whether each column of the input list contains all unique elements in HTML format.
+        """
         return self.t.get_html_string(header=False)
 
     def get_string(self) -> str:
+        """
+        This function returns the table showing whether each column of the input list contains all unique elements
+        in string format.
+
+        Returns:
+            str: The table showing whether each column of the input list contains all unique elements in string format.
+        """
         return self.t.get_string(header=False)
 
 
 def grid_condition(dims: str) -> tuple:
+    """
+    This function takes a string input in the form of "x" separated row and column dimensions and returns a tuple of integers representing the dimensions.
+    The function ensures that the input is in the correct format and that the row and column dimensions are within the specified range.
+    If the input is not in the correct format or the dimensions are outside the specified range, the function returns a default value of (5, 5).
+
+    Args:
+        dims (str): A string in the form of "x" separated row and column dimensions.
+
+    Returns:
+        tuple: A tuple of integers representing the row and column dimensions.
+    """
     split = dims.split("x")
     if len(split) == 2 and (3 <= rows <= 9 and 3 <= cols <= 9):
         rows, cols = split
@@ -48,6 +111,15 @@ def grid_condition(dims: str) -> tuple:
 
 
 def director_creator(dir: str) -> bool:
+    """
+    Creates a directory with the given name in the current working directory.
+
+    Parameters:
+        dir (str): The name of the directory to create.
+
+    Returns:
+        bool: True if the directory was created, False if the directory already exists.
+    """
     if not os.path.isdir(f"./{dir}"):
         os.mkdir(f"./{dir}")
         return True
