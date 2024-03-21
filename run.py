@@ -1,10 +1,11 @@
 from Percolation import *
 
-row1 = create_row(10)
-row2 = create_row(10)
-row3 = create_row(10)
-rows = [row1,row2,row3]
-tot = ""
-for i in rows:
-    tot += row1 + "\n"
-print(tot)
+
+rows, cols = grid_condition(sys.argv[-1])
+gm = Grid_Maker(rows, cols)
+two_dim_grid = gm.grid_maker()
+oon = Ok_or_not(two_dim_grid)
+ok_or_not_list = oon.generate()
+file_name = datetime.datetime.now().strftime("%Y_%m_%d_%H%M")
+HTML(gm, oon, file_name).create_file()
+Text(gm, oon, file_name).create_file()
