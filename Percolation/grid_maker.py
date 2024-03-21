@@ -21,9 +21,8 @@ class Grid_Maker:
             return True
         return False
 
-    def generate_cells_to_empty(self):
+    def generate_cells_to_empty(self) -> list:
         empty_no_of_cell = int(self.tot * self.perc_of_empty)
-        print(empty_no_of_cell)
         empty_no_of_cell = (
             empty_no_of_cell - self.cols
             if empty_no_of_cell > self.cols
