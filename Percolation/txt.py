@@ -24,7 +24,9 @@ class Text:
         Returns:
             str: the combined output of the grid and the ok_or_not functions
         """
-        return self.grid.generate_string() + "\n" + self.ok_or_not.get_string()
+        return (
+            self.grid.generate_string() + "\n" + self.ok_or_not.get_string()
+        )  # create the string
 
     def create_file(self) -> str:
         """
@@ -33,7 +35,7 @@ class Text:
             str: the full text grid with the "ok" or "not ok" message
 
         """
-        txt = self.create_full_grid()
+        txt = self.create_full_grid()  # getting the full string of the grid
         with open(self.file_name, "w") as f:
-            f.write(txt)
+            f.write(txt)  # add to the file
         return txt
