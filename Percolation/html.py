@@ -17,7 +17,8 @@ class HTML:
         self.file_name = f"./{file_name}/{file_name}.html"  # the directory
         director_creator(file_name)  # calling the director_creator() helper function
 
-    def create_html_code(self, elements: str) -> str:
+    @staticmethod
+    def create_html_code(elements: str) -> str:
         return f"""
             <!DOCTYPE html>
             <html lang="en">

@@ -2,7 +2,8 @@ from Percolation import *
 
 
 class Random:
-    def generate_random_number(self, start: int, end: int) -> int:
+    @staticmethod
+    def generate_random_number(start: int, end: int) -> int:
         """
         Generate a random integer number between start and end (inclusive).
 
@@ -17,7 +18,8 @@ class Random:
             start, end
         )  # Create a random integer number between start and end
 
-    def select_choice(self, choices: list, probability: tuple[float]) -> list:
+    @staticmethod
+    def select_choice(choices: list, probability: tuple[float]) -> list:
         """
         Select a random choice from a list based on a given probability distribution.
 
