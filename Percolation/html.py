@@ -14,8 +14,8 @@ class HTML:
         """
         self.grid = grid
         self.ok_or_not = ok_or_not
-        self.file_name = f"./{file_name}/{file_name}.html"
-        director_creator(file_name)
+        self.file_name = f"./{file_name}/{file_name}.html"  # the directory
+        director_creator(file_name)  # calling the director_creator() helper function
 
     def create_html_code(self, elements: str) -> str:
         return f"""
@@ -26,7 +26,7 @@ class HTML:
               </head>
               <body>{elements}</body>
             </html>
-        """
+        """  # return the default html code template
 
     def create_full_grid(self) -> str:
         """
@@ -35,7 +35,9 @@ class HTML:
         Returns:
             str: The full HTML code for the Percolation simulation.
         """
-        return self.grid.generate_html() + self.ok_or_not.get_html()
+        return (
+            self.grid.generate_html() + self.ok_or_not.get_html()
+        )  # returning the combination of grid and ok or not
 
     def create_file(self) -> str:
         """
@@ -44,7 +46,9 @@ class HTML:
         Returns:
             str: The full HTML code for the Percolation simulation.
         """
-        code = self.create_html_code(self.create_full_grid())
+        code = self.create_html_code(
+            self.create_full_grid()
+        )  # generating the html code
         with open(self.file_name, "w") as f:
-            f.write(code)
+            f.write(code)  # inserting the code into the file
         return code
