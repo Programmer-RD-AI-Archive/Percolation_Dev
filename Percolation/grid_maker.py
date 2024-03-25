@@ -1,4 +1,4 @@
-from Percolation import Random, random, PrettyTable
+from Percolation import PrettyTable, Random, random
 
 
 class Grid_Maker:
@@ -74,8 +74,9 @@ class Grid_Maker:
         )  # Calculate the number of cells that has to be emptied
         coordinates = []
         while empty_no_of_cell != 0:
-            row, col = random.randint(1, self.rows), random.randint(
-                1, self.cols
+            row, col = (
+                random.randint(1, self.rows),
+                random.randint(1, self.cols),
             )  # Select a random row and column
             if col not in self.coordinate_cols(coordinates):
                 deleted_status = self._empty_cell(
@@ -98,7 +99,8 @@ class Grid_Maker:
                 row.append(
                     self.r.generate_random_number(10, 99)
                 )  # add the random number generated to the list
-            self.grid.append(row)  # add the random number list generated to the list
+            # add the random number list generated to the list
+            self.grid.append(row)
         return self.grid
 
     def generate_string(
@@ -125,7 +127,8 @@ class Grid_Maker:
         table = PrettyTable(header=False)  # Create a table
         for row in self.grid:
             table.add_row(row)  # Add a row
-        return str(table.get_html_string())  # Return the string without the header
+        # Return the string without the header
+        return str(table.get_html_string())
 
     def grid_maker(self):
         self.make_grid()  # Make a grid

@@ -1,4 +1,4 @@
-from Percolation import random, PrettyTable, os
+from Percolation import PrettyTable, os, random
 
 
 class Random:
