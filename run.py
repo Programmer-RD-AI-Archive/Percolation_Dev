@@ -1,4 +1,4 @@
-from Percolation import *
+from Percolation import grid_condition, Grid_Maker, Ok_or_not, HTML, Text
 
 
 rows, cols = grid_condition(sys.argv[-1])
