@@ -1,7 +1,7 @@
-import sys
-import random
-import os
 import datetime
+import os
+import random
+import sys
 
 try:
     from prettytable import PrettyTable
@@ -12,8 +12,7 @@ else:
 finally:
     os.system("pip3 install prettytable")
 
-
-from Percolation.helper_functions import *
 from Percolation.grid_maker import *
-from Percolation.txt import *
+from Percolation.helper_functions import *
 from Percolation.html import *
+from Percolation.txt import *
