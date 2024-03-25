@@ -113,9 +113,10 @@ def grid_condition(dims: str) -> tuple:
         tuple: A tuple of integers representing the row and column dimensions.
     """
     split = dims.split("x")  # Splitting the dim by 'x' character
-    if len(split) == 2 and (3 <= rows <= 9 and 3 <= cols <= 9):  # Checking conditions
+    if len(split) == 2:  # Checking conditions
         rows, cols = split
-        return rows, cols
+        if 3 <= rows <= 9 and 3 <= cols <= 9:
+            return rows, cols
     return 5, 5  # Returning the default grid sizes
 
 
