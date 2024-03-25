@@ -2,7 +2,6 @@ from Percolation import *
 
 
 class Text:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         """
         Initialize a new instance of the Text class.

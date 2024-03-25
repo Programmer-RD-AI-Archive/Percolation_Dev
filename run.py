@@ -1,6 +1,5 @@
 from Percolation import *
 
-
 rows, cols = grid_condition(sys.argv[-1])
 gm = Grid_Maker(rows, cols)
 two_dim_grid = gm.grid_maker()
