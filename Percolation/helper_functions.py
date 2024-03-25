@@ -119,17 +119,17 @@ def grid_condition(dims: str) -> tuple:
     return 5, 5  # Returning the default grid sizes
 
 
-def director_creator(dir: str) -> bool:
+def director_creator(directory: str) -> bool:
     """
     Creates a directory with the given name in the current working directory.
 
     Parameters:
-        dir (str): The name of the directory to create.
+        directory (str): The name of the directory to create.
 
     Returns:
         bool: True if the directory was created, False if the directory already exists.
     """
-    if not os.path.isdir(f"./{dir}"):  # checking if the directory doesnt exist
-        os.mkdir(f"./{dir}")  # making the directory
+    if not os.path.isdir(f"./{directory}"):  # checking if the directory doesnt exist
+        os.mkdir(f"./{directory}")  # making the directory
         return True
     return False
