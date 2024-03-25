@@ -1,8 +1,9 @@
-import sys
-import random
-import os
-from prettytable import PrettyTable
 import datetime
+import os
+import random
+import sys
+
+from prettytable import PrettyTable
 
 
 class Random:
@@ -130,7 +131,6 @@ class Grid_Maker:
 
 
 class HTML:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         self.grid = grid
         self.ok_or_not = ok_or_not
@@ -160,7 +160,6 @@ class HTML:
 
 
 class Text:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         self.grid = grid
         self.ok_or_not = ok_or_not
