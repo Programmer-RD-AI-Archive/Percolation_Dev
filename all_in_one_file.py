@@ -1,15 +1,18 @@
-import sys
-import random
-import os
-from prettytable import PrettyTable
 import datetime
+import os
+import random
+import sys
+
+from prettytable import PrettyTable
 
 
 class Random:
-    def generate_random_number(self, start: int, end: int) -> int:
+    @staticmethod
+    def generate_random_number(start: int, end: int) -> int:
         return random.randint(start, end)
 
-    def select_choice(self, choices: list, probability: tuple[float]) -> list:
+    @staticmethod
+    def select_choice(choices: list, probability: tuple[float]) -> list:
         if len(choices) == len(probability):
             return random.choices(choices, weights=probability)
         raise ValueError(
@@ -128,14 +131,14 @@ class Grid_Maker:
 
 
 class HTML:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         self.grid = grid
         self.ok_or_not = ok_or_not
         self.file_name = f"./{file_name}/{file_name}.html"
         director_creator(file_name)
 
-    def create_html_code(self, elements: str) -> str:
+    @staticmethod
+    def create_html_code(elements: str) -> str:
         return f"""
             <!DOCTYPE html>
             <html lang="en">
@@ -157,7 +160,6 @@ class HTML:
 
 
 class Text:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         self.grid = grid
         self.ok_or_not = ok_or_not

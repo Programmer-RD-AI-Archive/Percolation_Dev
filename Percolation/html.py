@@ -2,7 +2,6 @@ from Percolation import *
 
 
 class HTML:
-
     def __init__(self, grid: Grid_Maker, ok_or_not: Ok_or_not, file_name: str) -> None:
         """
         Initialize the HTML class.
@@ -15,9 +14,11 @@ class HTML:
         self.grid = grid
         self.ok_or_not = ok_or_not
         self.file_name = f"./{file_name}/{file_name}.html"  # the directory
-        director_creator(file_name)  # calling the director_creator() helper function
+        # calling the director_creator() helper function
+        director_creator(file_name)
 
-    def create_html_code(self, elements: str) -> str:
+    @staticmethod
+    def create_html_code(elements: str) -> str:
         return f"""
             <!DOCTYPE html>
             <html lang="en">
