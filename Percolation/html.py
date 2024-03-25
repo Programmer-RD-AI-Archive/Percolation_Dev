@@ -1,4 +1,4 @@
-from Percolation import *
+from Percolation import Grid_Maker, Ok_or_not, director_creator
 
 
 class HTML:

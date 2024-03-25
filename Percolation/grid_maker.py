@@ -1,4 +1,4 @@
-from Percolation import *
+from Percolation import Random, random, PrettyTable
 
 
 class Grid_Maker:
