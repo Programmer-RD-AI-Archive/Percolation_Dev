@@ -18,7 +18,7 @@ class HTML:
         director_creator(file_name)
 
     @staticmethod
-    def create_html_code(elements: str, name: str="Grid") -> str:
+    def create_html_code(elements: str, name: str = "Grid") -> str:
         return f"""
             <!DOCTYPE html>
             <html lang="en">
