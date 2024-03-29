@@ -78,7 +78,6 @@ class Ok_or_not:
                     ele
                 )  # Add each element to each column
                 row[idx] = None
-        print(self.cols_data)
         list_ok_or_not = self.filter(self.cols_data)  # Filter all the columns
         self.t.add_row(list_ok_or_not)  # Add to the self.t table
         return list_ok_or_not
@@ -125,6 +124,7 @@ def grid_condition(dims: str) -> tuple:
             rows, cols = list(map(int, split))
             if 3 <= rows <= 9 and 3 <= cols <= 9:
                 return rows, cols
+    print('The enetered grid size is invalid... The default 5x5 Grid is used')
     return 5, 5  # Returning the default grid sizes
 
 
