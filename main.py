@@ -8,4 +8,5 @@ if __name__ == "__main__":
     ok_or_not_list = oon.generate()
     file_name = datetime.datetime.now().strftime("%Y_%m_%d_%H%M")
     HTML(gm, oon, file_name).create_file()
-    Text(gm, oon, file_name).create_file()
+    t = Text(gm, oon, file_name).create_file()
+    print(t)

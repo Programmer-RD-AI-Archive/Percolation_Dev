@@ -67,7 +67,7 @@ class Grid_Maker:
             ]
             cols_check.append(False if empty else True)
         return any(cols_check)
-            
+
     def generate_cells_to_empty(self) -> list:
         """
         This function generates a list of random row and column indices that represent

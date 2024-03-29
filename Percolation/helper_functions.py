@@ -71,10 +71,14 @@ class Ok_or_not:
             str: The table showing whether each column of the input list contains all unique elements.
         """
         for row in self.grid:
+            row = row.copy()
             for ele in row:
-                self.cols_data[row.index(ele)].append(
+                idx = row.index(ele)
+                self.cols_data[idx].append(
                     ele
                 )  # Add each element to each column
+                row[idx] = None
+        print(self.cols_data)
         list_ok_or_not = self.filter(self.cols_data)  # Filter all the columns
         self.t.add_row(list_ok_or_not)  # Add to the self.t table
         return list_ok_or_not
