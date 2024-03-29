@@ -1,4 +1,4 @@
-from Percolation import random, PrettyTable, os
+from Percolation import PrettyTable, os, random
 
 
 class Random:
@@ -112,9 +112,13 @@ def grid_condition(dims: str) -> tuple:
     Returns:
         tuple: A tuple of integers representing the row and column dimensions.
     """
-    split = dims.split(dims[int(len(dims)/2)]) # Splitting the dim by 'middle' character
-    if any([s.isnumeric() for s in split]): # checking if the picked character is a number
-        split = dims.split('x') # then try and split from 'x'
+    split = dims.split(
+        dims[int(len(dims) / 2)]
+    )  # Splitting the dim by 'middle' character
+    if any(
+        [s.isnumeric() for s in split]
+    ):  # checking if the picked character is a number
+        split = dims.split("x")  # then try and split from 'x'
     if len(split) == 2:  # Checking conditions
         rows, cols = split
         if rows.isnumeric() and cols.isnumeric():

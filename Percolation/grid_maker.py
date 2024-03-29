@@ -1,4 +1,4 @@
-from Percolation import Random, random, PrettyTable
+from Percolation import PrettyTable, Random, random
 
 
 class Grid_Maker:
@@ -49,7 +49,7 @@ class Grid_Maker:
             self.grid[row - 1][col - 1] = ""
             return True
         return False
-    
+
     def __check_if_all_columns_have_empty_cell(self) -> bool:
         """
         This function checks if any of the columns have empty space left to remove
@@ -62,12 +62,10 @@ class Grid_Maker:
         """
         cols_check = []
         for col in range(self.cols):
-            empty = "" in [
-                row[col] for row in self.grid
-            ]
+            empty = "" in [row[col] for row in self.grid]
             cols_check.append(False if empty else True)
         return any(cols_check)
-            
+
     def generate_cells_to_empty(self) -> list:
         """
         This function generates a list of random row and column indices that represent
@@ -94,8 +92,9 @@ class Grid_Maker:
         coordinates = []
         empty_cells_in_cols = self.__check_if_all_columns_have_empty_cell()
         while empty_no_of_cell != 0 and empty_cells_in_cols:
-            row, col = random.randint(1, self.rows), random.randint(
-                1, self.cols
+            row, col = (
+                random.randint(1, self.rows),
+                random.randint(1, self.cols),
             )  # Select a random row and column
             if col not in self.coordinate_cols(coordinates):
                 deleted_status = self.__empty_cell(
@@ -119,7 +118,8 @@ class Grid_Maker:
                 row.append(
                     self.r.generate_random_number(10, 99)
                 )  # add the random number generated to the list
-            self.grid.append(row)  # add the random number list generated to the list
+            # add the random number list generated to the list
+            self.grid.append(row)
         return self.grid
 
     def create_table(self) -> PrettyTable:
@@ -132,11 +132,11 @@ class Grid_Maker:
         Returns:
             PrettyTable: a table with all of the data in the 2D grid `self.grid`
         """
-        table = PrettyTable(header=False) # Create a table
+        table = PrettyTable(header=False)  # Create a table
         for row in self.grid:
-            table.add_row(row) # Add a row
+            table.add_row(row)  # Add a row
         return table
-    
+
     def generate_string(
         self,
     ) -> str:
@@ -146,7 +146,9 @@ class Grid_Maker:
         Returns:
             str: A string representation of the grid.
         """
-        return str(self.create_table().get_string())  # Return a string  without the header
+        return str(
+            self.create_table().get_string()
+        )  # Return a string  without the header
 
     def generate_html(self):
         """
@@ -155,7 +157,9 @@ class Grid_Maker:
         Returns:
             str: An HTML representation of the grid.
         """
-        return str(self.create_table().get_html_string())  # Return the string without the header
+        return str(
+            self.create_table().get_html_string()
+        )  # Return the string without the header
 
     def grid_maker(self) -> list:
         self.make_grid()  # Make a grid
