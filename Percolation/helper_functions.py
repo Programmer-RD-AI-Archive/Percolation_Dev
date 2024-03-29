@@ -62,7 +62,7 @@ class Ok_or_not:
             "NO" if "" in cols_data[col] else "OK" for col in cols_data
         ]  # filter the columns to see if there are empty cell in a column
 
-    def generate(self) -> str:
+    def generate(self) -> list:
         """
         This function generates a table showing whether each column of the input list contains all unique elements.
         The output is a string containing the table in HTML format.
@@ -112,11 +112,14 @@ def grid_condition(dims: str) -> tuple:
     Returns:
         tuple: A tuple of integers representing the row and column dimensions.
     """
-    split = dims.split("x")  # Splitting the dim by 'x' character
+    split = dims.split(dims[int(len(dims)/2)]) # Splitting the dim by 'middle' character
+    if any([s.isnumeric() for s in split]): # checking if the picked character is a number
+        split = dims.split('x') # then try and split from 'x'
     if len(split) == 2:  # Checking conditions
         rows, cols = split
         if rows.isnumeric() and cols.isnumeric():
-            if 3 <= int(rows) <= 9 and 3 <= int(cols) <= 9:
+            rows, cols = list(map(int, split))
+            if 3 <= rows <= 9 and 3 <= cols <= 9:
                 return rows, cols
     return 5, 5  # Returning the default grid sizes
 
