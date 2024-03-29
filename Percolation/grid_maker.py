@@ -21,7 +21,7 @@ class Grid_Maker:
             i[1] for i in x
         ]  # getting the first index of `x` list
 
-    def _empty_cell(self, row: int, col: int) -> bool:
+    def __empty_cell(self, row: int, col: int) -> bool:
         """
         Checks if the given row and column indices are within the bounds of the grid,
         and if the cell at that location is not already empty. If both conditions are true,
@@ -44,11 +44,30 @@ class Grid_Maker:
             not in [
                 row[col] for row in self.grid
             ]  # Make sure that column doesn't have empty cells
+            and self.grid != []
         ):
             self.grid[row - 1][col - 1] = ""
             return True
         return False
+    
+    def __check_if_all_columns_have_empty_cell(self) -> bool:
+        """
+        This function checks if any of the columns have empty space left to remove
 
+        Args:
+            None
+
+        Returns:
+            bool: A boolean checking the `cols_check` list and if any of them has a True, True will be returned other wise False would be returned
+        """
+        cols_check = []
+        for col in range(self.cols):
+            empty = "" in [
+                row[col] for row in self.grid
+            ]
+            cols_check.append(False if empty else True)
+        return any(cols_check)
+            
     def generate_cells_to_empty(self) -> list:
         """
         This function generates a list of random row and column indices that represent
@@ -73,17 +92,19 @@ class Grid_Maker:
             else self.cols - empty_no_of_cell
         )  # Calculate the number of cells that has to be emptied
         coordinates = []
-        while empty_no_of_cell != 0:
+        empty_cells_in_cols = self.__check_if_all_columns_have_empty_cell()
+        while empty_no_of_cell != 0 and empty_cells_in_cols:
             row, col = random.randint(1, self.rows), random.randint(
                 1, self.cols
             )  # Select a random row and column
             if col not in self.coordinate_cols(coordinates):
-                deleted_status = self._empty_cell(
+                deleted_status = self.__empty_cell(
                     row, col
                 )  # getting the status of emptying a cell
                 if deleted_status:
                     empty_no_of_cell -= 1
             coordinates.append((row, col))  # add the coordinates
+            empty_cells_in_cols = self.__check_if_all_columns_have_empty_cell()
         return coordinates
 
     def make_grid(self) -> list:
@@ -101,33 +122,42 @@ class Grid_Maker:
             self.grid.append(row)  # add the random number list generated to the list
         return self.grid
 
+    def create_table(self) -> PrettyTable:
+        """
+        This function creates a table using PrettyTable
+
+        Args:
+            None
+
+        Returns:
+            PrettyTable: a table with all of the data in the 2D grid `self.grid`
+        """
+        table = PrettyTable(header=False) # Create a table
+        for row in self.grid:
+            table.add_row(row) # Add a row
+        return table
+    
     def generate_string(
         self,
     ) -> str:
         """
-        This function generates a string representation of the grid using the PrettyTable library.
+        This function generates a string representation of the grid.
 
         Returns:
             str: A string representation of the grid.
         """
-        table = PrettyTable(header=False)  # Create a table
-        for row in self.grid:
-            table.add_row(row)  # Add a row
-        return str(table.get_string())  # Return a string  without the header
+        return str(self.create_table().get_string())  # Return a string  without the header
 
     def generate_html(self):
         """
-        This function generates an HTML representation of the grid using the PrettyTable library.
+        This function generates an HTML representation of the grid
 
         Returns:
             str: An HTML representation of the grid.
         """
-        table = PrettyTable(header=False)  # Create a table
-        for row in self.grid:
-            table.add_row(row)  # Add a row
-        return str(table.get_html_string())  # Return the string without the header
+        return str(self.create_table().get_html_string())  # Return the string without the header
 
-    def grid_maker(self):
+    def grid_maker(self) -> list:
         self.make_grid()  # Make a grid
         self.generate_cells_to_empty()  # Empty random grid
         return self.grid  # send the final grid
